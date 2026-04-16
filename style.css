@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    overflow: hidden;
+
+    animation: pageLoad 0.8s ease;
+}
+
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%);
+    top: -200px;
+    left: -200px;
+    animation: floatGlow 6s infinite alternate ease-in-out;
+}
+
+@keyframes floatGlow {
+    from { transform: translate(0,0); }
+    to { transform: translate(100px, 80px); }
+}
+
+h1 {
+    font-size: 2.7rem;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+
+    animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    to {
+        text-shadow:
+            0 0 15px rgba(59,130,246,0.4),
+            0 0 30px rgba(168,85,247,0.2);
+    }
+}
+
+#choices {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+
+    animation: slideUp 0.7s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+
+    color: white;
+    font-weight: bold;
+
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+button:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+button:active {
+    transform: scale(0.92);
+}
+
+#rock {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+#rock:hover {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 0 30px rgba(239,68,68,0.6);
+}
+
+#paper {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+#paper:hover {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 0 30px rgba(59,130,246,0.6);
+}
+
+#scissors {
+    background: linear-gradient(135deg, #a855f7, #6d28d9);
+}
+
+#scissors:hover {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 0 30px rgba(168,85,247,0.6);
+}
+
+#result {
+    margin-top: 15px;
+    font-size: 1.6rem;
+    padding: 12px 20px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+
+    transition: all 0.3s ease;
+    transition: color 0.2s ease;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+        filter: blur(4px);
+    }
+    60% {
+        transform: scale(1.08);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+.animate-result {
+    animation: popIn 0.3s ease;
+}
+
+#playerChoice {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    opacity: 0.9;
+
+    padding: 8px 16px;
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#score {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    opacity: 0.85;
+
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
