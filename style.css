@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh; /* FIX: better than height for mobile */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,9 @@ body {
     color: white;
 
     background: radial-gradient(circle at top, #0f172a, #020617);
-    overflow: hidden;
+    overflow-x: hidden; /* FIX: prevent horizontal scroll */
+
+    padding: 20px; /* FIX: spacing on phones */
 
     animation: pageLoad 0.8s ease;
 }
@@ -37,6 +39,7 @@ body::before {
     top: -200px;
     left: -200px;
     animation: floatGlow 6s infinite alternate ease-in-out;
+    pointer-events: none; /* FIX: prevents weird mobile interaction issues */
 }
 
 @keyframes floatGlow {
@@ -48,6 +51,7 @@ h1 {
     font-size: 2.7rem;
     margin-bottom: 25px;
     letter-spacing: 2px;
+    text-align: center;
 
     animation: titleGlow 2s infinite alternate;
 }
@@ -67,6 +71,9 @@ h1 {
     display: flex;
     gap: 25px;
     margin-bottom: 25px;
+
+    flex-wrap: wrap; /* FIX: prevents overflow on small screens */
+    justify-content: center;
 
     animation: slideUp 0.7s ease;
 }
@@ -119,6 +126,7 @@ button:active {
     transform: scale(0.92);
 }
 
+/* BUTTONS */
 #rock {
     background: linear-gradient(135deg, #ef4444, #b91c1c);
 }
@@ -157,7 +165,6 @@ button:active {
     text-align: center;
 
     transition: all 0.3s ease;
-    transition: color 0.2s ease;
 }
 
 @keyframes popIn {
@@ -192,6 +199,7 @@ button:active {
     border: 1px solid rgba(255,255,255,0.08);
 
     animation: fadeInUp 0.5s ease;
+    text-align: center;
 }
 
 @keyframes fadeInUp {
@@ -211,9 +219,39 @@ button:active {
     opacity: 0.85;
 
     animation: fadeIn 1s ease;
+    text-align: center;
 }
 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* 🔥 MOBILE FIXES */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #choices {
+        gap: 12px;
+    }
+
+    button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+
+    #result {
+        font-size: 1.3rem;
+    }
+
+    #playerChoice {
+        font-size: 1.1rem;
+    }
+
+    #score {
+        font-size: 1rem;
+    }
 }
